@@ -104,6 +104,19 @@
     @apply text-[36px] leading-[44px];
   }
 
+  .size-full {
+    width: 100%;
+    height: 100%;
+  }
+
+  .size-24 {
+    height: 6rem; /*equivalent to 96px */
+    width: 6rem; /*equivalent to 96px */
+  }
+
+  .max-w-60 {
+    max-width: 15rem;
+  }
   /* Home */
   .home {
     @apply no-scrollbar flex w-full flex-row max-xl:max-h-screen max-xl:overflow-y-scroll;
@@ -253,7 +266,7 @@
   }
 
   .mobilenav-sheet_close {
-    @apply flex gap-3 items-center p-4 rounded-lg w-full max-w-60;
+    @apply flex gap-3 items-center p-4 rounded-lg w-full;
   }
 
   /* PlaidLink */
