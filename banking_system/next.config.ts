@@ -7,10 +7,6 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   reactCompiler: true,
-  //@ts-ignore
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
 };
 
 export default withSentryConfig(nextConfig, {
