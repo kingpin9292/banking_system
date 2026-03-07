@@ -14,8 +14,20 @@ import { addFundingSource, createDwollaCustomer } from "./dwolla.actions";
 const {
   APPWRITE_DATABASE_ID: DATABASE_ID,
   APPWRITE_USER_COLLECTION_ID: USERS_COLLECTION_ID,
-  APPWRITE_BANK_ACCOUNTS_COLLECTION_ID: BANK_COLLECTION_ID,
+  APPWRITE_BANK_COLLECTION_ID: BANK_COLLECTION_ID,
 } = process.env;
+
+export const getUserInfo = async ({ userId }: getUserInfoProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const user = await database.listDocuments(DATABASE_ID!, USERS_COLLECTION_ID!, [Query.equal("userId", [userId])]);
+
+    return parseStringify(user.documents[0]);
+  } catch (error) {
+    console.error("An error occurred while getting user info:", error);
+  }
+};
 
 export const signIn = async ({ email, password }: signInProps) => {
   try {
@@ -28,14 +40,11 @@ export const signIn = async ({ email, password }: signInProps) => {
       sameSite: "strict",
       secure: true,
     });
+    const user = await getUserInfo({ userId: session.userId });
 
-    return parseStringify(session);
+    return parseStringify(user);
   } catch (error: any) {
     console.error("Error", error);
-    return {
-      success: false,
-      error: error.message || "An error occurred during sign up.",
-    };
   }
 };
 
@@ -81,18 +90,20 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
   }
 };
 
-export async function getLoggedInUser() {
+export const getLoggedInUser = async () => {
   try {
     const { account } = await createSessionClient();
-    const user = await account.get();
+    const result = await account.get();
+
+    const user = await getUserInfo({ userId: result.$id });
     return parseStringify(user);
   } catch (error) {
     console.log("Error", error);
     return null;
   }
-}
+};
 
-export async function logoutAccount() {
+export const logoutAccount = async () => {
   try {
     const { account } = await createSessionClient();
     await account.deleteSession("current");
@@ -103,7 +114,7 @@ export async function logoutAccount() {
     console.error("Error during logout:", error); // Log the error for debugging
     return { success: false, error: error.message || "An error occurred during logout" }; // Provide meaningful error feedback
   }
-}
+};
 
 //plaid link token creation
 export const createLinkToken = async (user: User) => {
@@ -113,9 +124,10 @@ export const createLinkToken = async (user: User) => {
         client_user_id: user.$id,
       },
       client_name: `${user.firstName} ${user.lastName}`,
-      products: ["auth"] as Products[],
+      products: ["auth", "transactions"] as Products[],
       country_codes: ["US"] as CountryCode[],
       language: "en",
+      update: { reauthorization_enabled: true },
     };
 
     const response = await plaidClient.linkTokenCreate(tokenParams);
@@ -133,7 +145,7 @@ export const createBankAccount = async ({
   accountId,
   accessToken,
   fundingSourceUrl,
-  sharableId,
+  shareableId,
 }: createBankAccountProps) => {
   try {
     const { database } = await createAdminClient();
@@ -144,7 +156,7 @@ export const createBankAccount = async ({
       accountId,
       accessToken,
       fundingSourceUrl,
-      sharableId,
+      shareableId,
     });
 
     return parseStringify(bankAccount);
@@ -196,7 +208,7 @@ export const exchangePublicToken = async ({ publicToken, user }: exchangePublicT
       accountId: accountData.account_id,
       accessToken,
       fundingSourceUrl,
-      sharableId: encryptId(accountData.account_id),
+      shareableId: encryptId(accountData.account_id),
     });
 
     // Revalidate the path to reflect the changes
@@ -207,5 +219,43 @@ export const exchangePublicToken = async ({ publicToken, user }: exchangePublicT
     });
   } catch (error) {
     console.error("An error occurred while creating exchanging token:", error);
+  }
+};
+
+export const getBanks = async ({ userId }: getBanksProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const banks = await database.listDocuments(DATABASE_ID!, BANK_COLLECTION_ID!, [Query.equal("userId", [userId])]);
+
+    return parseStringify(banks.documents);
+  } catch (error) {
+    console.error("An error occurred while getting banks:", error);
+  }
+};
+
+export const getBank = async ({ documentId }: getBankProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const bank = await database.listDocuments(DATABASE_ID!, BANK_COLLECTION_ID!, [Query.equal("$id", [documentId])]);
+
+    return parseStringify(bank.documents[0]);
+  } catch (error) {
+    console.error("An error occurred while getting bank:", error);
+  }
+};
+export const getBankByAccountId = async ({ accountId }: getBankByAccountIdProps) => {
+  try {
+    const { database } = await createAdminClient();
+
+    const bank = await database.listDocuments(DATABASE_ID!, BANK_COLLECTION_ID!, [
+      Query.equal("accountId", [accountId]),
+    ]);
+    if (bank.total !== 1) return null;
+
+    return parseStringify(bank.documents[0]);
+  } catch (error) {
+    console.error("An error occurred while getting bank account by Id:", error);
   }
 };

@@ -49,6 +49,7 @@ declare type NewUserParams = {
 };
 
 declare type Account = {
+  map(arg0: (s: Account) => string): React.ReactNode;
   id: string;
   availableBalance: number;
   currentBalance: number;
@@ -59,7 +60,7 @@ declare type Account = {
   type: string;
   subtype: string;
   appwriteItemId: string;
-  sharableId: string;
+  shareableId: string;
 };
 
 declare type Transaction = {
@@ -88,7 +89,7 @@ declare type Bank = {
   accessToken: string;
   fundingSourceUrl: string;
   userId: string;
-  sharableId: string;
+  shareableId: string;
 };
 
 declare type AccountTypes = "depository" | "credit" | "loan " | "investment" | "other";
@@ -308,7 +309,7 @@ declare interface createBankAccountProps {
   accountId: string;
   bankId: string;
   fundingSourceUrl: string;
-  sharableId: string;
+  shareableId: string;
 }
 
 declare interface getBanksProps {

@@ -29,8 +29,7 @@ export const TEST_USER_ID = "6627ed3d00267aa6fa3e";
 //   "access-sandbox-da44dac8-7d31-4f66-ab36-2238d63a3017";
 
 // custom_user -> Chase Bank
-export const TEST_ACCESS_TOKEN =
-  "access-sandbox-229476cf-25bc-46d2-9ed5-fba9df7a5d63";
+export const TEST_ACCESS_TOKEN = "access-sandbox-229476cf-25bc-46d2-9ed5-fba9df7a5d63";
 
 export const ITEMS = [
   {
@@ -50,7 +49,7 @@ export const ITEMS = [
 ];
 
 export const topCategoryStyles = {
-  "Food and Drink": {
+  FOOD_AND_DRINK: {
     bg: "bg-blue-25",
     circleBg: "bg-blue-100",
     text: {
@@ -61,9 +60,48 @@ export const topCategoryStyles = {
       bg: "bg-blue-100",
       indicator: "bg-blue-700",
     },
-    icon: "/icons/monitor.svg",
+    icon: "/icons/food.svg",
   },
-  Travel: {
+  TRANSPORTATION: {
+    bg: "bg-orange-25",
+    circleBg: "bg-orange-100",
+    text: {
+      main: "text-orange-900",
+      count: "text-orange-700",
+    },
+    progress: {
+      bg: "bg-orange-100",
+      indicator: "bg-orange-700",
+    },
+    icon: "/icons/transportation.svg",
+  },
+  TRAVEL: {
+    bg: "bg-yellow-25",
+    circleBg: "bg-yellow-100",
+    text: {
+      main: "text-yellow-900",
+      count: "text-yellow-700",
+    },
+    progress: {
+      bg: "bg-yellow-100",
+      indicator: "bg-yellow-700",
+    },
+    icon: "/icons/travel.svg",
+  },
+  ENTERTAINMENT: {
+    bg: "bg-purple-25",
+    circleBg: "bg-purple-100",
+    text: {
+      main: "text-purple-900",
+      count: "text-purple-700",
+    },
+    progress: {
+      bg: "bg-purple-100",
+      indicator: "bg-purple-700",
+    },
+    icon: "/icons/entertainment.svg",
+  },
+  INCOME: {
     bg: "bg-success-25",
     circleBg: "bg-success-100",
     text: {
@@ -74,7 +112,20 @@ export const topCategoryStyles = {
       bg: "bg-success-100",
       indicator: "bg-success-700",
     },
-    icon: "/icons/coins.svg",
+    icon: "/icons/income.svg",
+  },
+  TRANSFER_OUT: {
+    bg: "bg-red-25",
+    circleBg: "bg-red-100",
+    text: {
+      main: "text-red-900",
+      count: "text-red-700",
+    },
+    progress: {
+      bg: "bg-red-100",
+      indicator: "bg-red-700",
+    },
+    icon: "/icons/transferOut.svg",
   },
   default: {
     bg: "bg-pink-25",
@@ -126,6 +177,12 @@ export const transactionCategoryStyles = {
     borderColor: "border-[#12B76A]",
     backgroundColor: "bg-[#12B76A]",
     textColor: "text-[#027A48]",
+    chipBackgroundColor: "bg-[#ECFDF3]",
+  },
+  Travel: {
+    borderColor: "border-[#0047AB]",
+    backgroundColor: "bg-blue-500",
+    textColor: "text-blue-700",
     chipBackgroundColor: "bg-[#ECFDF3]",
   },
   default: {

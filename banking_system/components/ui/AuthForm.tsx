@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import CustomInput from "./CustomInput";
-import { authFormSchema, stateToAbbrev } from "@/lib/utils";
+import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 import { useRouter } from "next/navigation";
@@ -37,9 +37,6 @@ const AuthForm = ({ type }: { type: string }) => {
       //Sign up with Appwrite and create plaid token
 
       if (type === "sign-up") {
-        // const stateAbbrev = stateToAbbrev(data.state);
-        // if (!stateAbbrev) throw new Error("Invalid state name");
-
         const userData = {
           firstName: data.firstName!,
           lastName: data.lastName!,

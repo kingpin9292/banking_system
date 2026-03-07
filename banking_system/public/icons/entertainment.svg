@@ -1,0 +1,25 @@
+<svg
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Background -->
+  <circle cx="32" cy="32" r="30" fill="#F2E6FF" />
+
+  <!-- Music note -->
+  <path
+    d="M38 18V38C38 41 36 44 32 44C28 44 26 41 26 38C26 35 28 32 32 32C33.5 32 35 32.5 36 33V18H38Z"
+    fill="#8A2BE2"
+  />
+
+  <!-- Film strip -->
+  <rect x="14" y="28" width="20" height="18" rx="2" fill="#B57CFF" />
+  <rect x="16" y="30" width="4" height="4" fill="white" />
+  <rect x="22" y="30" width="4" height="4" fill="white" />
+  <rect x="28" y="30" width="4" height="4" fill="white" />
+  <rect x="16" y="36" width="4" height="4" fill="white" />
+  <rect x="22" y="36" width="4" height="4" fill="white" />
+  <rect x="28" y="36" width="4" height="4" fill="white" />
+</svg>

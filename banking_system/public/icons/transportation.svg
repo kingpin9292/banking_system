@@ -1,0 +1,34 @@
+<svg
+  width="64"
+  height="64"
+  viewBox="0 0 64 64"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Background -->
+  <circle cx="32" cy="32" r="30" fill="#FFF2E6" />
+
+  <!-- Car body -->
+  <path
+    d="M14 36H50C52 36 54 38 54 40V46C54 48 52 50 50 50H14C12 50 10 48 10 46V40C10 38 12 36 14 36Z"
+    fill="#FF7A1A"
+  />
+
+  <!-- Car top -->
+  <path
+    d="M20 36L24 28H40L44 36H20Z"
+    fill="#FF7A1A"
+  />
+
+  <!-- Wheels -->
+  <circle cx="22" cy="50" r="4" fill="#333" />
+  <circle cx="42" cy="50" r="4" fill="#333" />
+
+  <!-- Motion lines -->
+  <path
+    d="M8 38H4M8 42H2"
+    stroke="#FF7A1A"
+    stroke-width="3"
+    stroke-linecap="round"
+  />
+</svg>
