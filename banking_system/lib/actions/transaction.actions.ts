@@ -42,6 +42,6 @@ export const getTransactionsByBankId = async ({ bankId }: getTransactionsByBankI
 
     return parseStringify(transactions);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

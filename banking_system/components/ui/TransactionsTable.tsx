@@ -73,6 +73,3 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => {
 };
 
 export default TransactionsTable;
-function getTransactionCategoryStyles(category: string): { borderColor: any; textColor: any } {
-  throw new Error("Function not implemented.");
-}

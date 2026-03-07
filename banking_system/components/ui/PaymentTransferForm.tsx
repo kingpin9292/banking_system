@@ -66,9 +66,9 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
           name: data.name,
           amount: data.amount,
           senderId: senderBank.$id,
-          senderBankId: senderBank.bankId,
+          senderBankId: senderBank.$id,
           receiverId: receiverBank.$id,
-          receiverBankId: receiverBank.bankId,
+          receiverBankId: receiverBank.$id,
           email: data.email,
         };
 
